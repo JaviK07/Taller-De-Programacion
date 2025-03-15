@@ -45,8 +45,8 @@ for _ in range(3):
         elif user_answer >= 4 or user_answer <= 0:
             print('Respuesta No Valida')
             sys.exit(1)
-        else:
-            print("Incorrecto. La respuesta correcta es:") # Si el usuario no responde correctamente después de 2 intentos, se muestra la respuesta correcta
-            print(answers[question_index] [correct_answers_index[question_index]])
+    else:
+        print("Incorrecto. La respuesta correcta es:") # Si el usuario no responde correctamente después de 2 intentos, se muestra la respuesta correcta
+        print(answers[question_index] [correct_answers_index[question_index]])
             
 print() # Se imprime un blanco al final de la pregunta
