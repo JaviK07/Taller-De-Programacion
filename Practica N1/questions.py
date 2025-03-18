@@ -25,7 +25,7 @@ answers = [ # Respuestas posibles para cada pregunta, en el mismo orden que las 
 correct_answers_index = [1, 2, 0, 3, 1] # Índice de la respuesta correcta para cada pregunta, el mismo orden que las preguntas
 score = 0
 
-questions_to_ask = random.choices(list(zip(questions, answers, correct_answers_index)), k=3) # zip agrupa en tuplas las preguntas, respuestas y respuestas correctas; list las hace accesibles a un bucle formandola en lista
+questions_to_ask = random.sample(list(zip(questions, answers, correct_answers_index)), k=3) # zip agrupa en tuplas las preguntas, respuestas y respuestas correctas; list las hace accesibles a un bucle formandola en lista
 #el parametro 'k' garantiza la cantidad de selecciones. 'Random.Choices' puede repetir preguntas en este caso. 'Random.Samples' hace que no se repitan las preguntas
 # El usuario responde 3 preguntas seleccionadas
 for question, answer_options, correct_index in questions_to_ask:
