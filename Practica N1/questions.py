@@ -25,36 +25,36 @@ answers = [ # Respuestas posibles para cada pregunta, en el mismo orden que las 
 correct_answers_index = [1, 2, 0, 3, 1] # Índice de la respuesta correcta para cada pregunta, el mismo orden que las preguntas
 score = 0
 
-# El usuario deberá contestar 3 preguntas
-for _ in range(3):
-    question_index = random.randint(0, len(questions) - 1) # Se selecciona una pregunta aleatoria
-    
-    print(questions[question_index]) # Se muestra la pregunta y las respuestas posibles
-    for i, answer in enumerate(answers[question_index]):
+questions_to_ask = random.choices(list(zip(questions, answers, correct_answers_index)), k=3) # zip agrupa en tuplas las preguntas, respuestas y respuestas correctas; list las hace accesibles a un bucle formandola en lista
+#el parametro 'k' garantiza la cantidad de selecciones. 'Random.Choices' puede repetir preguntas en este caso. 'Random.Samples' hace que no se repitan las preguntas
+# El usuario responde 3 preguntas seleccionadas
+for question, answer_options, correct_index in questions_to_ask:
+    print(question)
+    for i, answer in enumerate(answer_options):
         print(f"{i + 1}. {answer}")
 
-    for intento in range(2): # El usuario tiene 2 intentos para responder correctamente
-        try: # Cláusula TRY-EXCEPT utilizado para capturar errores y que el programa pueda seguir su ejecucion según se desee.
+    for intento in range(2):
+        try:
             user_answer = int(input("Respuesta: ")) - 1
         except ValueError:
             print("Respuesta No Valida")
-            sys.exit(1) # Modulo incluido en Python para finalizar con un programa en ejecución.
-        
-        if user_answer == correct_answers_index[question_index]: # Se verifica si la respuesta es correcta
+            sys.exit(1)
+
+        if user_answer >= 4 or user_answer < 0:
+            print("Respuesta No Valida")
+            sys.exit(1)
+
+        if user_answer == correct_index:
             print("¡Correcto!")
             score += 1
             break
-        elif user_answer >= 4 or user_answer < 0:
-            print('Respuesta No Valida')
-            sys.exit(1)
         else:
             score -= 0.5
             score = max(score, 0)
     else:
-        print("Incorrecto. La respuesta correcta es:") # Si el usuario no responde correctamente después de 2 intentos, se muestra la respuesta correcta
-        print(answers[question_index] [correct_answers_index[question_index]])
+        print("Incorrecto. La respuesta correcta es:")
+        print(answer_options[correct_index])
 
-print('-------------------')            
-print('SCORE:',score)
-print('-------------------')            
-print() # Se imprime un blanco al final de la pregunta
+print('-------------------')
+print('SCORE:', score)
+print('-------------------')
