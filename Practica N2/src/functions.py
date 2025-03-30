@@ -52,15 +52,15 @@ def dictionary_iteration_and_calculus(rounds):
             final_ranking[key]['Deaths'] += 1 if value['deaths'] else 0
             final_ranking[key]['Final Points'] += round_points
 
-        # Assign MVP if available
+
         if round_mvp:
             final_ranking[round_mvp]['MVPs'] += 1
             ranking_round[round_mvp]['MVPs'] += 1
 
-        # Order the round ranking
+
         ranking_ordered = dict(sorted(ranking_round.items(), key=lambda item: item[1]['round_points'], reverse=True))
 
-        # Print round ranking
+
         print("________________________________________________")
         print("______________ Round Ranking: ______________")
         print("________________________________________________")
@@ -71,7 +71,7 @@ def dictionary_iteration_and_calculus(rounds):
 
     print("\n\n\n")
 
-    # Order the final ranking
+
     final_ranking_ordered = dict(sorted(final_ranking.items(), key=lambda item: item[1]['Final Points'], reverse=True))
     print("________________________________________________")
     print("______________ Final Ranking: ______________")   
